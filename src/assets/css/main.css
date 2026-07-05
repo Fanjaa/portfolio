@@ -1,0 +1,331 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/inter';
+@import '@fontsource-variable/jetbrains-mono';
+
+/*
+  ───────────────────────────────────────────────────────────────
+  Design tokens. Raw palette lives on :root (dark) and is overridden
+  under .light. Semantic tokens are mapped via `@theme inline` so the
+  generated utilities reference the runtime vars — that's what lets the
+  theme flip live without rebuilding classes.
+  ───────────────────────────────────────────────────────────────
+*/
+
+:root {
+  color-scheme: dark;
+
+  /* surfaces */
+  --c-canvas: #08090c;
+  --c-surface: #0d0f13;
+  --c-surface-2: #14171d;
+  --c-surface-3: #1b1f27;
+  --c-elevated: #0f1216;
+
+  /* ink */
+  --c-ink: #edeef1;
+  --c-ink-muted: #9ea3ad;
+  --c-ink-faint: #6a6f7a;
+
+  /* lines */
+  --c-line: color-mix(in oklab, #ffffff 9%, transparent);
+  --c-line-strong: color-mix(in oklab, #ffffff 16%, transparent);
+
+  /* accent — logo-tuned: the F-mark's cyan-teal hue (#4e757f), energized */
+  --c-accent: #37d3cf;
+  --c-accent-ink: #05130f;
+  --c-accent-soft: color-mix(in oklab, #37d3cf 14%, transparent);
+  --c-accent-line: color-mix(in oklab, #37d3cf 34%, transparent);
+  --c-accent-glow: color-mix(in oklab, #37d3cf 22%, transparent);
+
+  /* secondary hue for tasteful two-tone gradients (indigo) */
+  --c-iris: #7c85ff;
+
+  --shadow-card: 0 1px 0 0 color-mix(in oklab, #fff 6%, transparent) inset,
+    0 20px 40px -24px rgba(0, 0, 0, 0.7);
+}
+
+.light {
+  color-scheme: light;
+  --c-canvas: #f7f8fa;
+  --c-surface: #ffffff;
+  --c-surface-2: #f2f4f7;
+  --c-surface-3: #e9ecf1;
+  --c-elevated: #ffffff;
+
+  --c-ink: #14171c;
+  --c-ink-muted: #565c66;
+  --c-ink-faint: #878d98;
+
+  --c-line: color-mix(in oklab, #0b1220 11%, transparent);
+  --c-line-strong: color-mix(in oklab, #0b1220 18%, transparent);
+
+  --c-accent: #0b8f93;
+  --c-accent-ink: #ffffff;
+  --c-accent-soft: color-mix(in oklab, #0b8f93 12%, transparent);
+  --c-accent-line: color-mix(in oklab, #0b8f93 30%, transparent);
+  --c-accent-glow: color-mix(in oklab, #0b8f93 16%, transparent);
+
+  --c-iris: #5b63e6;
+  --shadow-card: 0 1px 0 0 rgba(255, 255, 255, 0.9) inset,
+    0 18px 40px -28px rgba(16, 24, 40, 0.35);
+}
+
+@theme inline {
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, 'SF Mono', 'Cascadia Code', monospace;
+
+  --color-canvas: var(--c-canvas);
+  --color-surface: var(--c-surface);
+  --color-surface-2: var(--c-surface-2);
+  --color-surface-3: var(--c-surface-3);
+  --color-elevated: var(--c-elevated);
+
+  --color-ink: var(--c-ink);
+  --color-ink-muted: var(--c-ink-muted);
+  --color-ink-faint: var(--c-ink-faint);
+
+  --color-line: var(--c-line);
+  --color-line-strong: var(--c-line-strong);
+
+  --color-accent: var(--c-accent);
+  --color-accent-ink: var(--c-accent-ink);
+  --color-accent-soft: var(--c-accent-soft);
+  --color-accent-line: var(--c-accent-line);
+  --color-iris: var(--c-iris);
+
+  /* Fluid type ramp — clamp-based so nothing snaps at breakpoints */
+  --text-eyebrow: 0.75rem;
+  --text-eyebrow--line-height: 1.2;
+  --text-eyebrow--letter-spacing: 0.16em;
+
+  --text-display: clamp(2.6rem, 1.2rem + 6.2vw, 5.25rem);
+  --text-display--line-height: 0.96;
+  --text-display--letter-spacing: -0.03em;
+
+  --text-h2: clamp(1.9rem, 1.2rem + 2.8vw, 3rem);
+  --text-h2--line-height: 1.04;
+  --text-h2--letter-spacing: -0.02em;
+
+  --text-h3: clamp(1.25rem, 1rem + 1vw, 1.6rem);
+  --text-h3--line-height: 1.15;
+  --text-h3--letter-spacing: -0.01em;
+
+  --text-lead: clamp(1.05rem, 0.98rem + 0.5vw, 1.25rem);
+  --text-lead--line-height: 1.55;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  --radius-card: 18px;
+}
+
+@layer base {
+  * {
+    border-color: var(--c-line);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 5.5rem;
+  }
+
+  body {
+    background-color: var(--c-canvas);
+    color: var(--c-ink);
+    font-family: var(--font-sans);
+    font-feature-settings: 'cv11', 'ss01';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--c-accent-soft);
+    color: var(--c-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--c-accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* Refined scrollbar (progressive enhancement, dark-friendly) */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--c-surface-3);
+    border-radius: 999px;
+    border: 2px solid var(--c-canvas);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--c-line-strong);
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+  }
+}
+
+@layer components {
+  /* Section rhythm — intentionally asymmetric, not a repeated pt-36/pb-32 */
+  .shell {
+    width: 100%;
+    max-width: 74rem;
+    margin-inline: auto;
+    padding-inline: clamp(1.15rem, 5vw, 2.5rem);
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: var(--text-eyebrow);
+    letter-spacing: var(--text-eyebrow--letter-spacing);
+    text-transform: uppercase;
+    color: var(--c-ink-faint);
+  }
+  .eyebrow::before {
+    content: '';
+    width: 1.4rem;
+    height: 1px;
+    background: var(--c-accent-line);
+  }
+
+  .link-underline {
+    background-image: linear-gradient(var(--c-accent), var(--c-accent));
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.4s var(--ease-out-expo);
+  }
+  .link-underline:hover {
+    background-size: 100% 1px;
+  }
+
+  /* Frosted card base */
+  .card {
+    position: relative;
+    background: color-mix(in oklab, var(--c-surface) 88%, transparent);
+    border: 1px solid var(--c-line);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+    backdrop-filter: blur(6px);
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(
+      180deg,
+      var(--c-ink) 30%,
+      color-mix(in oklab, var(--c-ink) 55%, transparent)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .grid-lines {
+    background-image:
+      linear-gradient(to right, var(--c-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--c-line) 1px, transparent 1px);
+    background-size: 56px 56px;
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 20%, transparent 75%);
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 20%, transparent 75%);
+  }
+
+  /* Scroll-reveal: elements start hidden, JS adds .is-in */
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+      opacity 0.7s var(--ease-out-expo),
+      transform 0.7s var(--ease-out-expo);
+    will-change: opacity, transform;
+  }
+  .reveal.is-in {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -22px, 0);
+  }
+}
+
+@keyframes drift {
+  0% {
+    transform: translate3d(-2%, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(2%, -3%, 0) scale(1.05);
+  }
+  100% {
+    transform: translate3d(-2%, 0, 0) scale(1);
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.55;
+    transform: scale(0.82);
+  }
+}
+
+.animate-float {
+  animation: float-slow 9s ease-in-out infinite;
+}
+.animate-drift {
+  animation: drift 22s ease-in-out infinite;
+}
+.animate-marquee {
+  animation: marquee var(--marquee-duration, 40s) linear infinite;
+}
+.animate-pulse-dot {
+  animation: pulse-dot 2.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
