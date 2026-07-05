@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://portofolio-fanja.netlify.app/sitemap.xml
+Sitemap: https://fanja.web.id/sitemap.xml
