@@ -1,10 +1,81 @@
-<!DOCTYPE html>
-<html lang="">
+<!doctype html>
+<html lang="en" class="dark">
   <head>
-    <meta charset="UTF-8">
-    <link rel="icon" href="/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vite App</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#08090c" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f7f8fa" media="(prefers-color-scheme: light)" />
+
+    <title>Muhammad Irfannurroja — Backend Engineer</title>
+    <meta
+      name="description"
+      content="Muhammad Irfannurroja (Fanja) — backend engineer. Backend, infrastructure &amp; security behind Reparty: Laravel, PostgreSQL, payment escrow and Docker — built and run end-to-end."
+    />
+    <meta name="author" content="Muhammad Irfannurroja" />
+    <link rel="canonical" href="https://portofolio-fanja.netlify.app/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Muhammad Irfannurroja" />
+    <meta property="og:title" content="Muhammad Irfannurroja — Backend Engineer" />
+    <meta
+      property="og:description"
+      content="Backend, infrastructure and security for production apps — Laravel, PostgreSQL, payment escrow and Docker, built and run end-to-end on Reparty."
+    />
+    <meta property="og:url" content="https://portofolio-fanja.netlify.app/" />
+    <meta property="og:image" content="https://portofolio-fanja.netlify.app/og-cover.png" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@fanjaaa_" />
+    <meta name="twitter:title" content="Muhammad Irfannurroja — Backend Engineer" />
+    <meta
+      name="twitter:description"
+      content="Backend, infra &amp; security — Laravel, PostgreSQL, payments, Docker. Built and run end-to-end on Reparty."
+    />
+    <meta name="twitter:image" content="https://portofolio-fanja.netlify.app/og-cover.png" />
+
+    <!-- No-FOUC theme: apply saved/system preference before first paint -->
+    <script>
+      ;(function () {
+        try {
+          var stored = localStorage.getItem('theme')
+          var dark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches
+          var el = document.documentElement
+          el.classList.toggle('dark', dark)
+          el.classList.toggle('light', !dark)
+        } catch (e) {}
+      })()
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Muhammad Irfannurroja",
+        "alternateName": "Fanja",
+        "jobTitle": "Backend Engineer",
+        "url": "https://portofolio-fanja.netlify.app/",
+        "email": "mailto:Irfannurroja28@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Tangerang",
+          "addressCountry": "ID"
+        },
+        "alumniOf": { "@type": "CollegeOrUniversity", "name": "Pamulang University" },
+        "worksFor": { "@type": "Organization", "name": "Holywings Group" },
+        "knowsAbout": ["Laravel", "PHP", "PostgreSQL", "NestJS", "Docker", "Payment Systems", "Application Security", "Infrastructure", "REST APIs"],
+        "sameAs": [
+          "https://www.linkedin.com/in/fanjaaa/",
+          "https://github.com/Fanjaa",
+          "https://x.com/fanjaaa_",
+          "https://instagram.com/fanjaaa_"
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="app"></div>
