@@ -24,7 +24,7 @@ import { t } from '@/i18n'
         <RevealItem :delay="80">
           <p class="mt-6 text-ink-muted leading-relaxed text-pretty">
             {{ t({
-              en: 'I’m based in South Tangerang and I build production HRIS platforms end-to-end — NestJS services on one side, the Flutter app an employee opens every morning on the other. It’s the kind of work where attendance, leave and payroll can’t be “roughly right”: someone’s paycheck depends on the edge cases holding.',
+              en: 'I’m based in Tangerang and I build production HRIS platforms end-to-end — NestJS services on one side, the Flutter app an employee opens every morning on the other. It’s the kind of work where attendance, leave and payroll can’t be “roughly right”: someone’s paycheck depends on the edge cases holding.',
               id: 'Saya berbasis di Tangerang Selatan dan membangun platform HRIS production secara end-to-end — service NestJS di satu sisi, dan aplikasi Flutter yang dibuka karyawan tiap pagi di sisi lain. Ini tipe kerjaan di mana absensi, cuti, dan payroll nggak boleh cuma “kurang lebih benar”: gaji seseorang bergantung pada apakah edge case-nya benar-benar ke-handle.',
             }) }}
           </p>

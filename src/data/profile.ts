@@ -5,7 +5,7 @@ export const profile = {
   shortName: 'Fanja',
   initials: 'MI',
   roles: ['Backend Engineer', 'Infrastructure', 'Security'],
-  location: { en: 'South Tangerang, Indonesia', id: 'Tangerang Selatan, Indonesia' },
+  location: { en: 'Tangerang, Indonesia', id: 'Tangerang Selatan, Indonesia' },
   timezone: 'GMT+7',
   currentCompany: 'Holywings Group',
   email: 'Irfannurroja28@gmail.com',
