@@ -121,38 +121,40 @@ function go(id: string) {
       </div>
     </div>
 
-    <!-- mobile sheet -->
-    <Transition name="sheet">
-      <div
-        v-if="mobileOpen"
-        id="mobile-nav"
-        class="fixed inset-x-0 top-16 bottom-0 z-40 border-t border-line bg-canvas/95 backdrop-blur-2xl lg:hidden"
-      >
-        <div class="shell flex h-full flex-col justify-between py-8">
-          <nav aria-label="Mobile">
-            <ul class="flex flex-col gap-1">
-              <li v-for="(item, i) in nav" :key="item.id">
-                <a
-                  :href="`#${item.id}`"
-                  class="flex items-center justify-between border-b border-line/60 py-4 text-2xl font-medium tracking-tight transition-colors"
-                  :class="active === item.id ? 'text-accent' : 'text-ink'"
-                  @click.prevent="go(item.id)"
-                >
-                  <span>{{ t(item.label) }}</span>
-                  <span class="font-mono text-xs text-ink-faint">0{{ i + 1 }}</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
-          <div class="flex flex-col gap-6">
-            <AppButton href="#contact" variant="primary" icon="mail" @click.prevent="go('contact')">
-              {{ t({ en: 'Start a conversation', id: 'Mulai percakapan' }) }}
-            </AppButton>
-            <SocialRow />
+    <!-- mobile sheet — teleported to body so it isn't nested inside the header's backdrop-filter context -->
+    <Teleport to="body">
+      <Transition name="sheet">
+        <div
+          v-if="mobileOpen"
+          id="mobile-nav"
+          class="fixed inset-x-0 top-16 bottom-0 z-40 border-t border-line bg-canvas backdrop-blur-2xl lg:hidden"
+        >
+          <div class="shell flex h-full flex-col justify-between py-8">
+            <nav aria-label="Mobile">
+              <ul class="flex flex-col gap-1">
+                <li v-for="(item, i) in nav" :key="item.id">
+                  <a
+                    :href="`#${item.id}`"
+                    class="flex items-center justify-between border-b border-line/60 py-4 text-2xl font-medium tracking-tight transition-colors"
+                    :class="active === item.id ? 'text-accent' : 'text-ink'"
+                    @click.prevent="go(item.id)"
+                  >
+                    <span>{{ t(item.label) }}</span>
+                    <span class="font-mono text-xs text-ink-faint">0{{ i + 1 }}</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+            <div class="flex flex-col gap-6">
+              <AppButton href="#contact" variant="primary" icon="mail" @click.prevent="go('contact')">
+                {{ t({ en: 'Start a conversation', id: 'Mulai percakapan' }) }}
+              </AppButton>
+              <SocialRow />
+            </div>
           </div>
         </div>
-      </div>
-    </Transition>
+      </Transition>
+    </Teleport>
   </header>
 </template>
 
